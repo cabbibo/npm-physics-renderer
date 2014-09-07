@@ -12,5 +12,13 @@
     "wombs"
   ],
   "author": "Isaac Cohen <isaaclandoncohen@gmail.com>",
-  "license": "BSD"
+  "license": "BSD",
+  "dependencies": {
+    "glslify": "~1.6.0",
+    "a-big-triangle": "0.0.0"
+  },
+  "devDependencies": {
+    "browserify": "~5.11.1",
+    "beefy": "~2.1.1"
+  }
 }
