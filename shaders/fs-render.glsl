@@ -35,6 +35,17 @@ void main(){
   s1 = vec3( .4 , 1.6 , .9 ) * pow( m , 10. );
   c+= s1;
 
+  m   =  max( 0. , dot(normalize( vVel) , vec3( 0. , 0. , -1. ) ) );
+  s1 = vec3( 1.4 , 1.6 , .9 ) * pow( m , 10. );
+  c+= s1;
+
+  m   =  max( 0. , dot(normalize( vVel) , vec3( 0. , -1. , 0. ) ) );
+  s1 = vec3( 1.4 , .4, .9 ) * pow( m , 10. );
+  c+= s1;
+
+   m   =  max( 0. , dot(normalize( vVel) , vec3( -1. , 0. , 0. ) ) );
+  s1 = vec3( .4 , .4, 2.9 ) * pow( m , 10. );
+  c+= s1;
 
   if( vLife > 1. ){
 
@@ -42,6 +53,6 @@ void main(){
 
   }
 
-  gl_FragColor = s * .5 + vec4( c , 1. ); //* vec4( 1. , 0. , vLife , 1. );
+  gl_FragColor = s* vec4( c , 1. ); //* vec4( 1. , 0. , vLife , 1. );
 
 }
