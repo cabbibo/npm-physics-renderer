@@ -40,7 +40,7 @@ function init(){
   renderer = document.createElement( "canvas" );
 
   renderer.width  = window.innerWidth * 2;
-  renderer.height = window.innerHeight* 2;
+  renderer.height = window.innerHeight * 2;
   renderer.style.width  = window.innerWidth + "px";
   renderer.style.height = window.innerHeight + "px";
   renderer.style.position = 'absolute';
@@ -73,7 +73,7 @@ function init(){
 
   particleShader = glslify({
     vert:'../shaders/vs-render.glsl',
-    frag:'../shaders/fs-render.glsl',
+    frag:'../shaders/fs-render.glsl'
   })(gl);
 
 

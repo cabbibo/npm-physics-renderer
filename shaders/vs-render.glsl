@@ -14,16 +14,21 @@ varying vec3 vPos;
 varying vec3 vOPos;
 varying vec3 vVel;
 
+varying float vLife;
+
 void main(){
 
 
   vUv = uv;
 
-  vPos  = texture2D( t_pos , uv ).xyz; 
+  vec4 p = texture2D( t_pos , uv );
+
+  vPos  = p.xyz; 
   vOPos = texture2D( t_oPos , uv ).xyz; 
 
   vVel = vPos - vOPos;
 
+  vLife = p.w;
   gl_PointSize = 5.;
   gl_Position = projectionMatrix * modelViewMatrix * vec4( vPos , 1. ); 
 
