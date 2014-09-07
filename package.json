@@ -1,0 +1,16 @@
+{
+  "name": "physics-renderer",
+  "version": "0.0.0",
+  "description": "gpgpu physics",
+  "main": "physics-renderer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gpgpu",
+    "webgl",
+    "wombs"
+  ],
+  "author": "Isaac Cohen <isaaclandoncohen@gmail.com>",
+  "license": "BSD"
+}
