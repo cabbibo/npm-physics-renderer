@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "description": "gpgpu physics",
   "main": "physics-renderer.js",
+  "browserify": {
+    "transform": [
+      "glslify"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +20,13 @@
   "license": "BSD",
   "dependencies": {
     "glslify": "~1.6.0",
-    "a-big-triangle": "0.0.0"
+    "a-big-triangle": "0.0.0",
+    "gl-fbo": "~2.0.3",
+    "glsl-curl-noise": "0.0.3",
+    "gl-mat4": "~1.0.0",
+    "canvas-orbit-camera": "~1.0.0",
+    "gl-vao": "~1.1.3",
+    "gl-buffer": "~2.0.9"
   },
   "devDependencies": {
     "browserify": "~5.11.1",
