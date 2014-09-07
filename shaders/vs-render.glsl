@@ -28,8 +28,8 @@ void main(){
 
   vVel = vPos - vOPos;
 
-  vLife = p.w;
-  gl_PointSize = 5.;
+  vLife =  p.w;
+  gl_PointSize = 50. * min( 1. , p.w );
   gl_Position = projectionMatrix * modelViewMatrix * vec4( vPos , 1. ); 
 
 }

@@ -8,6 +8,7 @@ var triangle    = require( 'a-big-triangle'         );
 var FBO         = require( 'gl-fbo'                 );
 var Vao         = require( 'gl-vao'                 );
 var Buffer      = require( 'gl-buffer'              );
+var Texture     = require( 'gl-texture2d'           );
 
 var create      = require( 'gl-mat4/create'         );
 var perspective = require( 'gl-mat4/perspective'    );
@@ -15,6 +16,8 @@ var perspective = require( 'gl-mat4/perspective'    );
 var Camera      = require( 'canvas-orbit-camera'    );
 
 var NDA         = require( 'ndarray'                );
+
+var lilBub      = require( '../dataImg/lilBub.js' );
 
 var physicsRenderer;
 var renderer;
@@ -29,6 +32,8 @@ var camera;
 
 var uvBuffer;
 var vao;
+
+var t_lilBub;
 
 var size;
 
@@ -56,7 +61,7 @@ function init(){
     frag:'../shaders/ss-curl.glsl'
   })(gl);
 
-  size = 256;
+  size = 128;
 
   physicsRenderer = new PR( gl , size , simShader );
 
@@ -112,7 +117,6 @@ function init(){
     }
   }
 
-  var vaoA
 
   uvBuffer = Buffer( gl , uvData );
   vao    = Vao( gl , [
@@ -123,6 +127,7 @@ function init(){
     }
   ]);
 
+  t_lilBub = Texture( gl , lilBub ); 
 }
 
 function animate(){
@@ -163,13 +168,17 @@ function animate(){
   particleShader.bind();
   particleShader.uniforms.modelViewMatrix = modelViewMatrix;
   particleShader.uniforms.projectionMatrix = projectionMatrix;
-  particleShader.uniforms.t_pos = physicsRenderer.output.color[0].bind( 0 );
-  particleShader.uniforms.t_oPos = physicsRenderer.oOutput.color[0].bind( 1 );
+  particleShader.uniforms.t_sprite = t_lilBub.bind( 2 );
+  particleShader.uniforms.t_pos   = physicsRenderer.output.color[0].bind( 0 );
+  particleShader.uniforms.t_oPos  = physicsRenderer.oOutput.color[0].bind( 1 );
 
+  //gl.enable( gl.BLEND );
+  //gl.blendFunc( gl.SRC_ALPHA , gl.ONE );
   gl.enable( gl.DEPTH_TEST );
   vao.bind();
   vao.draw( gl.POINTS , (size * size ) );
   gl.disable( gl.DEPTH_TEST );
+  //gl.disable( gl.BLEND );
   
 
 

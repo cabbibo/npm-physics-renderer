@@ -10,7 +10,7 @@ varying vec2 vUv;
 
 void main(){
 
-  vec2 add = vec2(  (1. / 256.) ,  (1. / 256.) );
+  vec2 add = vec2(  (.5 / 256.) ,  (.5 / 256.) );
   vec4 oPos = texture2D( t_oPos , vUv + add );
   vec4 pos  = texture2D( t_pos  , vUv+ add  );
 
@@ -20,17 +20,18 @@ void main(){
   vec3 vel = oPos.xyz - pos.xyz;
 
   vec3 curl = curlNoise( pos.xyz * .03 );
+  
   vel += curl;
 
   vec3 p = pos.xyz;
 
-  if( life > .9999 ){
+  if( life > 1. ){
 
     vel = vec3( 0. );
 
-  }
+    life = 1.;
 
-  if( life < 0. ){
+  }else if( life < 0. ){
 
     p = vec3(
       sin( cos( vUv.x * 10000. ) * 1000. ) * 5.,
@@ -40,14 +41,14 @@ void main(){
 
     vel = vec3( 0. );
 
-    life = 1.;
+    life = 100.;
 
+  }else{
+
+   life -= .001 *  (5. +(1. + sin( cos( vUv.x * 10000. + vUv.y * 100000. ) * 1000. ) * 5.));
+  
   }
 
-
-
-  life -= .001 *  (5. +(1. + sin( cos( vUv.x * 10000. + vUv.y * 100000. ) * 1000. ) * 5.));
-  
   p += vel * .1;
 
 
